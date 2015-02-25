@@ -1,4 +1,4 @@
-	.syntax unified
+.syntax unified
 	.arch armv7-a
 	.text
 	.align 2
@@ -18,16 +18,16 @@ fibonacci:
         cmp r4, #1        // Compare r4 to 1
         beq .L4        // if (r4 == 1) goto .L4
 
- 	subs r4,r4,#1 //r4=r4-1 
-	mov  r6,#1
-        mov  r7,#0     
-l1:     
-  	subs r4,r4,#1 //r4=r4-1 
-	adds r0,r6,r7 //r0=r6+r7
-	mov  r7,r6    //r7=r6
-	mov  r6,r0    //r6=r0
-        cmp  r4,#0    //if(r4!=0) go to l1
-	bne  l1
+  	//add r0, r4, #4294967295 
+          sub r0,r4,#1
+ // r0 = r4 + 4294967295 (or #0xFFFFFFFF)
+ 	bl fibonacci          // goto fibonacci @PC relative address
+	
+ 	 mov r5, r0        // r5 = r0
+ 	 sub r0, r4, #2    // r0 = r4 - 2
+ 	 bl fibonacci        // goto fibonacci @PC relative address
+
+ 	 adds r0, r5, r0
 
 	@ R4 = R0 - 0 (update flags)
 	@ if(R0 <= 0) goto .L3 (which returns 0)
