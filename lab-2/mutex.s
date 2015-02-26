@@ -16,7 +16,7 @@ lock_mutex:
             strexeq r2, r1, [r0] 
             cmpeq r2, #0
             bne .L1
-
+		//DMB
         @ END CODE INSERT
 	bx lr
 
@@ -27,11 +27,14 @@ lock_mutex:
 unlock_mutex:
 	@ INSERT CODE BELOW
 	ldr r1, =unlocked
+	
     	str r1, [r0]
+         //mov [ro], #0
+	
     	bx lr
 
         @ END CODE INSERT
-	bx lr
+	
 	.size unlock_mutex, .-unlock_mutex
 
 	.end
