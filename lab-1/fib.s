@@ -19,15 +19,15 @@ fibonacci:
         cmp r4, #1        // Compare r4 to 1
         beq .L4        // if (r4 == 1) goto .L4
 	//moveq r0, #1
- 	
+ 	sub r4,r4,#1 //r4=r4-1 
 	mov  r6,#1
         mov  r7,#0     
 l1:     
-  	sub r4,r4,#1 //r4=r4-1 
+  	subs r4,r4,#1 //r4=r4-1 
 	add r0,r6,r7 //r0=r6+r7
 	mov  r7,r6    //r7=r6
 	mov  r6,r0    //r6=r0
-        cmp  r4,#1    //if(r4!=0) go to l1
+        //cmp  r4,#1    //if(r4!=0) go to l1
 	bne  l1
 
 	
