@@ -23,14 +23,22 @@ fibonacci:
 	mov  r6,#1
         mov  r7,#0     
 l1:     
-  	subs r4,r4,#1 //r4=r4-1 
-	add r0,r6,r7 //r0=r6+r7
-	mov  r7,r6    //r7=r6
-	mov  r6,r0    //r6=r0
+  	
+	cmp r6,r7
+	ite gt
+	addgt r7,r6,r7
+	addle r6,r6,r7
+	subs r4,r4,#1 //r4=r4-1 
+	//add r0,r6,r7 //r0=r6+r7
+	//mov  r7,r6    //r7=r6
+	//mov  r6,r0    //r6=r0
         //cmp  r4,#1    //if(r4!=0) go to l1
 	bne  l1
 
-	
+	cmp r6,r7
+	ite gt
+	movgt r0,r6
+	movle r0,r7
 	
 	pop {  pc}
 
